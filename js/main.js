@@ -58,32 +58,8 @@ var pool_colors = {
 
 var known_miners = {
   "0xf3243babf74ead828ac656877137df705868fd66" : [ "Token Mining Pool", "http://TokenMiningPool.com",     pool_colors.orange ],
-  "0xf118fde3f634e5c47638030ab0514debf39465d1" : [ "Token Mining Pool", "http://TokenMiningPool.com",     pool_colors.orange ], // mint helper contract
-  "0x53ce57325c126145de454719b4931600a0bd6fc4" : [ "0xPool",            "http://0xPool.io",               pool_colors.purple ],
-  "0x98b155d9a42791ce475acc336ae348a72b2e8714" : [ "0xBTCpool",         "http://0xBTCpool.com",           pool_colors.blue ],
-  "0x363b5534fb8b5f615583c7329c9ca8ce6edaf6e6" : [ "mike.rs pool",      "http://mike.rs",                 pool_colors.green ],
-  "0x50212e78d96a183f415e1235e56e64416d972e93" : [ "mike.rs pool",      "http://mike.rs",                 pool_colors.green ], // mint helper contract
-  "0x02c8832baf93380562b0c8ce18e2f709d6514c60" : [ "mike.rs pool B",    "http://b.mike.rs",               pool_colors.green ],
-  "0x8dcee1c6302232c4cc5ce7b5ee8be16c1f9fd961" : [ "Mine0xBTC",         "http://mine0xbtc.eu",            pool_colors.darkpurple ],
-  "0x20744acca6966c0f45a80aa7baf778f4517351a4" : [ "PoolOfD32th",       "http://0xbtc.poolofd32th.club",  pool_colors.darkred ],
-  "0xd4ddfd51956c19f624e948abc8619e56e5dc3958" : [ "0xMiningPool",      "http://0xminingpool.com/",       pool_colors.teal ],
-  "0x88c2952c9e9c56e8402d1b6ce6ab986747336b30" : [ "0xbtc.wolfpool.io", "http://wolfpool.io/",            pool_colors.red ],
-  "0x540d752a388b4fc1c9deeb1cd3716a2b7875d8a6" : [ "tosti.ro",          "http://tosti.ro/",               pool_colors.slate ],
-  "0xbbdf0402e51d12950bd8bbd50a25ed1aba5615ef" : [ "ExtremeHash",       "http://0xbtc.extremehash.io/",   pool_colors.brightred ],
-  "0x7d28994733e6dbb93fc285c01d1639e3203b54e4" : [ "Wutime.com",        "http://wutime.com/",             pool_colors.royal ],
-  "0x02e03db268488716c161721663501014fa031250" : [ "xb.veo.network",    "https://xb.veo.network:2096/",   pool_colors.pink ],
-  "0xbf39de3c506f1e809b4e10e00dd22eb331abf334" : [ "xb.veo.network",    "https://xb.veo.network:2096/",   pool_colors.pink ],
-  "0x5404bd6b428bb8e326880849a61f0e7443ef5381" : [ "666pool",           "http://0xbtc.666pool.cn/",       pool_colors.grey ],
-  "0x6917035f1deecc51fa475be4a2dc5528b92fd6b0" : [ "PiZzA pool",        "http://gpu.PiZzA",               pool_colors.yellow ],
-  "0x693d59285fefbd6e7be1b87be959eade2a4bf099" : [ "PiZzA pool",        "http://gpu.PiZzA",               pool_colors.yellow ],
-  "0x697f698dd492d71734bcaec77fd5065fa7a95a63" : [ "PiZzA pool",        "http://gpu.PiZzA",               pool_colors.yellow ],
-  "0x69ebd94944f0dba3e9416c609fbbe437b45d91ab" : [ "PiZzA pool",        "http://gpu.PiZzA",               pool_colors.yellow ],
-  "0x69b85604799d16d938835852e497866a7b280323" : [ "PiZzA pool",        "http://gpu.PiZzA",               pool_colors.yellow ],
-  "0x69ded73bd88a72bd9d9ddfce228eadd05601edd7" : [ "PiZzA pool",        "http://gpu.PiZzA",               pool_colors.yellow ],
+
 }
-
-
-
 
 /* TODO: figure out why it doesn't work w metamask */
 var eth = new Eth(new Eth.HttpProvider("https://core.poa.network/MnFOXCPE2oOhWpOCyEBT"));
@@ -198,7 +174,7 @@ stats = [
   ['Supply Remaining in Era',       null,                                 "0xPOA",      0.00000001, null     ], /* mining */
   ['Last Eth Reward Block',         token.lastRewardEthBlockNumber,       "",           1,          null     ], /* mining */
   ['Last Eth Block',                eth.blockNumber,                      "",           1,          null     ], /* mining */
-  ['Current Reward Era',            token.rewardEra,                      "/ 39",       1,          null     ], /* mining */
+  ['Current Reward Era',            token.rewardEra,                      "/6",         1,          null     ], /* mining */
   ['Current Mining Reward',         token.getMiningReward,                "0xPOA",      0.00000001, null     ], /* mining */
   ['Epoch Count',                   token.epochCount,                     "",           1,          null     ], /* mining */
   ['Total Supply',                  token.totalSupply,                    "0xPOA",      0.00000001, null     ], /* supply */
@@ -489,7 +465,7 @@ function getMinerNameLinkHTML(address, known_miners) {
     var address_url = known_miners[address][1];
   } else {
     var readable_name = address.substr(0, 14) + '...';
-    var address_url = 'https://etherscan.io/address/' + address;
+    var address_url = 'https://poaexplorer.com/address/' + address;
   }
 
   return '<a href="' + address_url + '">' + poolstyle + readable_name + '</span></a>';
@@ -646,7 +622,7 @@ function updateAllMinerInfo(eth, stats, hours_into_past){
 
     /* fill in block info */
     var dt = new Date();
-    var innerhtml_buffer = '<tr><th>Time (Approx)</th><th>Eth Block #</th>'
+    var innerhtml_buffer = '<tr><th>Time (Approx)</th><th>POA Block #</th>'
       + '<th>Transaction Hash</th><th>Miner</th></tr>';
     mined_blocks.forEach(function(block_info) {
       var eth_block = parseInt(block_info[0]);
@@ -655,8 +631,8 @@ function updateAllMinerInfo(eth, stats, hours_into_past){
 
       var miner_name_link = getMinerNameLinkHTML(addr, known_miners);
 
-      var transaction_url = 'https://etherscan.io/tx/' + tx_hash;
-      var block_url = 'https://etherscan.io/block/' + eth_block;
+      var transaction_url = 'https://poaexplorer.com/tx/' + tx_hash;
+      var block_url = 'https://poaexplorer.com/blocks/block/' + eth_block;
 
       //log('hexcolor:', hexcolor, address_url);
 
