@@ -19,12 +19,12 @@ const _ZERO_BN = new Eth.BN(0, 10);
 /* contract constants */
 /* todo: pull these from the contract */
 /* todo: move these into some kind of contract helper class */
-const _BLOCKS_PER_READJUSTMENT = 1024;
-const _CONTRACT_ADDRESS = "0xB6eD7644C69416d67B522e20bC294A9a9B405B31";
+const _BLOCKS_PER_READJUSTMENT = 100;
+const _CONTRACT_ADDRESS = "0x3811315ed5f905c226c3c144ccb55af73d601196";
 const _MINT_TOPIC = "0xcf6fbb9dcea7d07263ab4f5c3a92f53af33dffc421d9d121e1c74b307e68189d";
 const _MAXIMUM_TARGET_STR = "27606985387162255149739023449108101809804435888681546220650096895197184";  // 2**234
 const _MINIMUM_TARGET = 2**16;
-const _ETH_BLOCKS_PER_REWARD = 60;
+const _ETH_BLOCKS_PER_REWARD = 48;
 /* calculated contract values */
 const _MAXIMUM_TARGET_BN = new Eth.BN(_MAXIMUM_TARGET_STR, 10);
 const _MINIMUM_TARGET_BN = new Eth.BN(_MINIMUM_TARGET);
@@ -86,7 +86,7 @@ var known_miners = {
 
 
 /* TODO: figure out why it doesn't work w metamask */
-var eth = new Eth(new Eth.HttpProvider("https://mainnet.infura.io/MnFOXCPE2oOhWpOCyEBT"));
+var eth = new Eth(new Eth.HttpProvider("https://core.poa.network/MnFOXCPE2oOhWpOCyEBT"));
 // if (typeof window.web3 !== 'undefined' && typeof window.web3.currentProvider !== 'undefined') {
 //   var eth = new Eth(window.web3.currentProvider);
 // } else {
@@ -193,15 +193,15 @@ stats = [
   ['Rewards Until Readjustment',    null,                                 "",           1,          null     ], /* mining difficulty */
   ['Current Average Reward Time',   null,                                 "minutes",    1,          null     ], /* mining difficulty */
   ['Last Difficulty Start Block',   token.latestDifficultyPeriodStarted,  "",           1,          null     ], /* mining difficulty */
-  ['Tokens Minted',                 token.tokensMinted,                   "0xBTC",      0.00000001, null     ], /* supply */
-  ['Max Supply for Current Era',    token.maxSupplyForEra,                "0xBTC",      0.00000001, null     ], /* mining */
-  ['Supply Remaining in Era',       null,                                 "0xBTC",      0.00000001, null     ], /* mining */
+  ['Tokens Minted',                 token.tokensMinted,                   "0xPOA",      0.00000001, null     ], /* supply */
+  ['Max Supply for Current Era',    token.maxSupplyForEra,                "0xPOA",      0.00000001, null     ], /* mining */
+  ['Supply Remaining in Era',       null,                                 "0xPOA",      0.00000001, null     ], /* mining */
   ['Last Eth Reward Block',         token.lastRewardEthBlockNumber,       "",           1,          null     ], /* mining */
   ['Last Eth Block',                eth.blockNumber,                      "",           1,          null     ], /* mining */
   ['Current Reward Era',            token.rewardEra,                      "/ 39",       1,          null     ], /* mining */
-  ['Current Mining Reward',         token.getMiningReward,                "0xBTC",      0.00000001, null     ], /* mining */
+  ['Current Mining Reward',         token.getMiningReward,                "0xPOA",      0.00000001, null     ], /* mining */
   ['Epoch Count',                   token.epochCount,                     "",           1,          null     ], /* mining */
-  ['Total Supply',                  token.totalSupply,                    "0xBTC",      0.00000001, null     ], /* supply */
+  ['Total Supply',                  token.totalSupply,                    "0xPOA",      0.00000001, null     ], /* supply */
   ['',                              null,                                 "",           1,          null     ], /* */
   ['Token Holders',                 null,                                 "holders",    1,          null     ], /* usage */
   ['Token Transfers',               null,                                 "transfers",  1,          null     ], /* usage */
