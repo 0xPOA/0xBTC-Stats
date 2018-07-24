@@ -20,7 +20,7 @@ const _ZERO_BN = new Eth.BN(0, 10);
 /* todo: pull these from the contract */
 /* todo: move these into some kind of contract helper class */
 const _BLOCKS_PER_READJUSTMENT = 100;
-const _CONTRACT_ADDRESS = "0x3811315ed5f905c226c3c144ccb55af73d601196";
+const _CONTRACT_ADDRESS = "x3811315ed5f905c226c3c144ccb55af73d601196";
 const _MINT_TOPIC = "0xcf6fbb9dcea7d07263ab4f5c3a92f53af33dffc421d9d121e1c74b307e68189d";
 const _MAXIMUM_TARGET_STR = "27606985387162255149739023449108101809804435888681546220650096895197184";  // 2**234
 const _MINIMUM_TARGET = 2**16;
